@@ -1,47 +1,46 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-
 import StepIndicator from "react-native-step-indicator";
+import {
+  colorNightBackground,
+  colorNightSecondary,
+  colorNightPrimary,
+} from "../constants/styles";
 
 const thirdIndicatorStyles = {
   stepIndicatorSize: 35,
   currentStepIndicatorSize: 40,
   separatorStrokeWidth: 3,
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: "#fff",
+  stepStrokeCurrentColor: colorNightSecondary,
   stepStrokeWidth: 3,
-  stepStrokeFinishedColor: "#fff",
-  stepStrokeUnFinishedColor: "#fff",
-  separatorFinishedColor: "#fff",
-  separatorUnFinishedColor: "#fff",
-  stepIndicatorFinishedColor: "#1a1a1a",
-  stepIndicatorUnFinishedColor: "#1a1a1a",
-  stepIndicatorCurrentColor: "#b5c1ff",
+  stepStrokeFinishedColor: colorNightSecondary,
+  stepStrokeUnFinishedColor: colorNightSecondary,
+  separatorFinishedColor: colorNightSecondary,
+  separatorUnFinishedColor: colorNightSecondary,
+  stepIndicatorFinishedColor: colorNightBackground,
+  stepIndicatorUnFinishedColor: colorNightBackground,
+  stepIndicatorCurrentColor: colorNightPrimary,
   stepIndicatorLabelCurrentColor: "transparent",
   stepIndicatorLabelFinishedColor: "transparent",
   stepIndicatorLabelUnFinishedColor: "transparent",
 };
 
-export default function StepSelector(props) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.stepIndicator}>
-        <StepIndicator
-          stepCount={props.stepCount}
-          customStyles={thirdIndicatorStyles}
-          currentPosition={props.currentPosition}
-          onPress={props.onPress}
-        />
-      </View>
-    </View>
-  );
+interface Props {
+  stepCount: number;
+  currentPosition: number;
+  onPress: (step: number) => void;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  stepIndicator: {
-    marginVertical: 5,
-  },
-});
+export default function StepSelector(props: Props) {
+  return (
+    <>
+      <StepIndicator
+        stepCount={props.stepCount}
+        customStyles={thirdIndicatorStyles}
+        currentPosition={props.currentPosition}
+        onPress={props.onPress}
+      />
+    </>
+  );
+}

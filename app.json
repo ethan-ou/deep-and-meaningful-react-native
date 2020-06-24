@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "deep-and-meaningful-v2",
-    "slug": "snack-2441f61f-f105-420d-aee8-16a2721e9e5c",
+    "name": "deep-and-meaningful",
+    "slug": "2441f61f-f105-420d-aee8-16a2721e9e5c",
     "privacy": "public",
     "sdkVersion": "37.0.0",
     "platforms": ["ios", "android", "web"],
@@ -18,7 +18,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.ethanou.deepandmeaningful",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.ethanou.deepandmeaningful",
+      "versionCode": 1
     }
   }
 }
