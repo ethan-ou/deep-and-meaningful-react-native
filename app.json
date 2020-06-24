@@ -25,6 +25,10 @@
     "android": {
       "package": "com.ethanou.deepandmeaningful",
       "versionCode": 1
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     }
   }
 }

@@ -7,7 +7,11 @@ import {
   Image,
   GestureResponderEvent,
 } from "react-native";
-import styles from "../constants/styles";
+import styles, { colorNightPrimary } from "../constants/styles";
+
+import Moon from "../assets/icons/MoonSolid";
+import Chat from "../assets/icons/ChatBold";
+import Undo from "../assets/icons/UndoAltSolid";
 
 interface Props {
   themeHandler: (event: GestureResponderEvent) => void;
@@ -17,24 +21,24 @@ interface Props {
 
 export default function MenuBar(props: Props) {
   return (
-    <View style={styles.navigation}>
-      <TouchableOpacity onPress={props.themeHandler}>
-        <Image
-          source={require("../assets/moon-solid-night.png")}
-          style={{ width: 40, height: 40 }}
-        />
+    <View style={[styles.navigation, styles.marginT1]}>
+      <TouchableOpacity
+        onPress={props.themeHandler}
+        style={[styles.height5, styles.width6h]}
+      >
+        <Moon color={colorNightPrimary} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={props.menuHandler}>
-        <Image
-          source={require("../assets/chat-bold-night.png")}
-          style={{ width: 53, height: 45 }}
-        />
+      <TouchableOpacity
+        onPress={props.menuHandler}
+        style={[styles.height5, styles.width6h]}
+      >
+        <Chat color={colorNightPrimary} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={props.undoHandler}>
-        <Image
-          source={require("../assets/undo-solid-night.png")}
-          style={{ width: 40, height: 40 }}
-        />
+      <TouchableOpacity
+        onPress={props.undoHandler}
+        style={[styles.height5, styles.width6h]}
+      >
+        <Undo color={colorNightPrimary} />
       </TouchableOpacity>
     </View>
   );

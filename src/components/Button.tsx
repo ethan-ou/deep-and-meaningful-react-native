@@ -15,7 +15,14 @@ interface Props {
 export default function (props: Props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <Text style={[styles.button, styles.fontSize4, styles.marginV2]}>
+      <Text
+        style={[
+          styles.button,
+          styles.fontSize4,
+          styles.marginV2,
+          styles.textCenter,
+        ]}
+      >
         {props.text}
       </Text>
     </TouchableOpacity>

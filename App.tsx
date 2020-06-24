@@ -12,18 +12,16 @@ import { StackParamList } from "./src/types";
 
 export default function App() {
   const Stack = createStackNavigator<StackParamList>();
-  {
-    /* <NavigationContainer>
+
+  return (
+    <AppProvider>
+      <NavigationContainer>
         <Stack.Navigator initialRouteName="Home" headerMode={"none"}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Menu" component={Menu} />
           <Stack.Screen name="Question" component={Question} />
         </Stack.Navigator>
-      </NavigationContainer> */
-  }
-  return (
-    <AppProvider>
-      <Home />
+      </NavigationContainer>
     </AppProvider>
   );
 }

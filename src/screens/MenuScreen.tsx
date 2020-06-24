@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import styles from "../constants/styles";
+import styles, { colorNightPrimary } from "../constants/styles";
 import { categories } from "../constants/categories";
 import StepSelector from "../components/StepSelector";
 import { useAppContext } from "../store";
 import { selectCategory, loadQuestions } from "../store/actions";
 import { StackParamList, Routes } from "../types";
 import Button from "../components/Button";
+
+import Dance from "../assets/icons/Dance";
+import Park from "../assets/icons/Park";
+import Neptune from "../assets/icons/Neptune";
+import Snuggle from "../assets/icons/Snuggle";
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, Routes>;
@@ -30,36 +35,16 @@ export default function Menu(props: Props) {
   const CategoryImage = (state: number) => {
     switch (state) {
       case 0: {
-        return (
-          <Image
-            source={require("../assets/categories/dance.png")}
-            style={[{ width: 40, height: 40 }, styles.marginHCenter]}
-          />
-        );
+        return <Dance color={colorNightPrimary} />;
       }
       case 1: {
-        return (
-          <Image
-            source={require("../assets/categories/park.png")}
-            style={[{ width: 40, height: 40 }, styles.marginHCenter]}
-          />
-        );
+        return <Park color={colorNightPrimary} />;
       }
       case 2: {
-        return (
-          <Image
-            source={require("../assets/categories/neptune.png")}
-            style={[{ width: 40, height: 40 }, styles.marginHCenter]}
-          />
-        );
+        return <Neptune color={colorNightPrimary} />;
       }
       case 3: {
-        return (
-          <Image
-            source={require("../assets/categories/snuggle.png")}
-            style={[{ width: 40, height: 40 }, styles.marginHCenter]}
-          />
-        );
+        return <Snuggle color={colorNightPrimary} />;
       }
       default: {
         return null;
@@ -81,7 +66,9 @@ export default function Menu(props: Props) {
       >
         What style of questions?
       </Text>
-      {CategoryImage(currentPage)}
+      <View style={[styles.alignCenter, styles.height15, styles.marginV2]}>
+        {CategoryImage(currentPage)}
+      </View>
       <Text
         style={[
           styles.fontSize4,
@@ -92,7 +79,14 @@ export default function Menu(props: Props) {
       >
         {categories[currentPage].name}
       </Text>
-      <View style={[styles.paddingT1, styles.paddingBVW4, styles.paddingH6]}>
+      <View
+        style={[
+          styles.paddingT1,
+          styles.paddingBVW4,
+          styles.paddingH6,
+          styles.marginT1p5,
+        ]}
+      >
         <StepSelector
           onPress={onStepPress}
           currentPosition={currentPage}

@@ -1,5 +1,20 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
+
+export const vw = (number: number) =>
+  Dimensions.get("window").width * (number / 100);
+export const vh = (number: number) =>
+  Dimensions.get("window").height * (number / 100);
+export const vmin = (number: number) =>
+  Math.min(
+    Dimensions.get("window").width * (number / 100),
+    Dimensions.get("window").height * (number / 100)
+  );
+export const vmax = (number: number) =>
+  Math.max(
+    Dimensions.get("window").width * (number / 100),
+    Dimensions.get("window").height * (number / 100)
+  );
 
 export const colorNightPrimary = "#b5c1ff";
 export const colorNightSecondary = "#fff";
@@ -56,50 +71,92 @@ const styles = StyleSheet.create({
   marginT0: {
     marginTop: 0,
   },
+  marginT1: {
+    marginTop: vh(1),
+  },
   marginT1p5: {
-    marginTop: "1.5vh",
+    marginTop: vh(1.5),
+  },
+  marginT3: {
+    marginTop: vh(3),
   },
   marginT4: {
-    marginTop: "4vh",
+    marginTop: vh(4),
   },
   marginB4: {
-    marginBottom: "4vh",
+    marginBottom: vh(4),
   },
   margin0: {
     margin: 0,
   },
   marginV2: {
-    marginVertical: "2vh",
-  },
-  marginHCenter: {
-    marginHorizontal: "auto",
+    marginVertical: vh(2),
   },
   marginH16: {
-    marginHorizontal: "16vw",
+    marginHorizontal: vw(16),
   },
   marginB2: {
-    marginBottom: "2vh",
+    marginBottom: vh(2),
   },
   paddingBVW4: {
-    paddingBottom: "4vw",
+    paddingBottom: vw(4),
   },
   paddingT1: {
-    paddingTop: "1vh",
+    paddingTop: vh(1),
   },
   paddingT3: {
-    paddingTop: "3vh",
+    paddingTop: vh(3),
   },
   paddingT5: {
-    paddingTop: "5vh",
+    paddingTop: vh(5),
   },
   paddingH5: {
-    paddingHorizontal: "5vw",
+    paddingHorizontal: vw(5),
   },
   paddingH6: {
-    paddingHorizontal: "6vw",
+    paddingHorizontal: vw(6),
   },
   paddingV2: {
-    paddingVertical: "2vh",
+    paddingVertical: vh(2),
+  },
+  padding3vh: {
+    padding: vh(3),
+  },
+  alignCenter: {
+    alignItems: "center",
+  },
+  height2: {
+    height: vh(2),
+  },
+  height4: {
+    height: vh(4),
+  },
+  height5: {
+    height: vh(5),
+  },
+  height6: {
+    height: vh(6),
+  },
+  height12: {
+    height: vh(12),
+  },
+  height14: {
+    height: vh(14),
+  },
+  height15: {
+    height: vh(15),
+  },
+  width5h: {
+    width: vh(5),
+  },
+  width6h: {
+    width: vh(6),
+  },
+  width7h: {
+    width: vh(7),
+  },
+  flex: {
+    flex: 1,
   },
   container: {
     flex: 1,
@@ -111,33 +168,25 @@ const styles = StyleSheet.create({
   },
   top: {
     position: "relative",
-    paddingHorizontal: "6vw",
-    top: "1vh",
+    paddingHorizontal: vw(6),
+    top: vh(1),
     display: "flex",
     flexDirection: "column",
   },
   bottom: {
-    paddingVertical: "1.5rem",
+    paddingVertical: 24,
     position: "absolute",
     bottom: 0,
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
+    width: vw(100),
     alignItems: "center",
-  },
-  topP: {
-    marginTop: "1.5vh",
-  },
-  selectP: {
-    fontSize: fontScale8,
-    marginHorizontal: "16vw",
+    justifyContent: "center",
   },
   button: {
     color: colorNightPrimary,
     backgroundColor: "transparent",
     paddingVertical: 12.8,
     paddingHorizontal: 56,
-    overflow: "hidden",
+    textAlignVertical: "center",
     borderRadius: 14,
     borderWidth: 5,
     borderColor: colorNightPrimary,

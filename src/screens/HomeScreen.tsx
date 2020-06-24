@@ -1,9 +1,11 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import styles from "../constants/styles";
+import styles, { colorNightPrimary } from "../constants/styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackParamList, Routes } from "../types";
 import Button from "../components/Button";
+
+import Conversation from "../assets/icons/ConversationBold";
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, Routes>;
@@ -14,25 +16,16 @@ export default function Home(props: Props) {
   return (
     <View style={[styles.container, styles.colorBackground]}>
       <View style={[styles.top, styles.paddingH6]}>
-        <Image
-          source={require("../assets/conversation-night-bold.png")}
-          style={[
-            {
-              aspectRatio: 3 / 2,
-              width: 120,
-              height: 120,
-            },
-            styles.marginHCenter,
-            styles.paddingT5,
-          ]}
-        />
+        <View style={[styles.alignCenter, styles.height14, styles.marginT4]}>
+          <Conversation color={colorNightPrimary} />
+        </View>
         <Text
           style={[
             styles.fontBold,
             styles.colorPrimary,
             styles.textCenter,
             styles.fontSize8,
-            styles.marginT4,
+            styles.marginT1p5,
             styles.marginB2,
           ]}
         >
