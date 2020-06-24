@@ -5,6 +5,8 @@ import {
   AppState,
   ADD_QUESTIONS,
   Question,
+  SWITCH_THEME,
+  SET_LOADED,
 } from "./types";
 import initialState from "./state";
 import questions from "../data/questions.json";
@@ -40,6 +42,20 @@ export default (state = initialState, action: ActionTypes): AppState => {
       return {
         ...state,
         questions: state.questions.concat(loadQuestions(state, questions)),
+      };
+    }
+
+    case SWITCH_THEME: {
+      if (action.theme) {
+        return {
+          ...state,
+          theme: action.theme,
+        };
+      }
+
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
     }
 

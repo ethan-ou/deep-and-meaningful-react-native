@@ -3,6 +3,8 @@ import {
   SELECT_CATEGORY,
   ADD_QUESTIONS,
   ActionTypes,
+  SWITCH_THEME,
+  ThemeType,
 } from "./types";
 
 export function loadQuestions(): ActionTypes {
@@ -21,5 +23,12 @@ export function selectCategory(category: number): ActionTypes {
   return {
     type: SELECT_CATEGORY,
     category,
+  };
+}
+
+export function switchTheme(theme?: ThemeType): ActionTypes {
+  return {
+    type: SWITCH_THEME,
+    theme: theme,
   };
 }

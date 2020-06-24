@@ -1,8 +1,8 @@
-import { Theme } from "@react-navigation/native";
-
 export const LOAD_QUESTIONS = "LOAD_QUESTIONS";
 export const ADD_QUESTIONS = "ADD_QUESTIONS";
 export const SELECT_CATEGORY = "SELECT_CATEGORY";
+export const SWITCH_THEME = "SWITCH_THEME";
+export const SET_LOADED = "SET_LOADED";
 
 interface LoadQuestionsAction {
   type: typeof LOAD_QUESTIONS;
@@ -17,6 +17,11 @@ interface SelectCategoryAction {
   category: number;
 }
 
+interface SwitchThemeAction {
+  type: typeof SWITCH_THEME;
+  theme?: ThemeType;
+}
+
 export interface Question {
   question: string;
   level: number;
@@ -26,9 +31,13 @@ export interface Question {
 export type ActionTypes =
   | SelectCategoryAction
   | LoadQuestionsAction
-  | AddQuestionsAction;
+  | AddQuestionsAction
+  | SwitchThemeAction;
+
+export type ThemeType = "light" | "dark";
 
 export interface AppState {
+  theme: ThemeType;
   category: number;
   questions: Question[];
 }

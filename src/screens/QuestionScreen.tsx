@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { shuffle, capitalise } from "../utils";
+import { Text, View } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+import { capitalise } from "../utils";
 import styles from "../constants/styles";
 import MenuBar from "../components/MenuBar";
 import { useAppContext } from "../store";
-import { addQuestions, loadQuestions } from "../store/actions";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { addQuestions, loadQuestions, switchTheme } from "../store/actions";
 import { StackParamList, Routes } from "../types";
 import Button from "../components/Button";
+import theme from "../constants/themes";
 
 // back arrow instead of refresh
 // home icon instead of speech bubble
@@ -21,6 +23,8 @@ interface Props {
 export default function Question(props: Props) {
   const [state, dispatch] = useAppContext();
   const [count, setCount] = useState(0);
+
+  const themeStyle = theme(state.theme);
 
   useEffect(() => {
     if (state.questions.length === 0) {
@@ -39,19 +43,31 @@ export default function Question(props: Props) {
       setCount(count - 1);
     }
   };
+
+  const handleTheme = () => {
+    dispatch(switchTheme());
+  };
+
   const navigateMenu = () => props.navigation.navigate("Menu");
 
   return (
-    <View style={[styles.container, styles.colorBackground]}>
+    <View
+      style={[
+        styles.container,
+        themeStyle("background") as {
+          backgroundColor: string;
+        },
+      ]}
+    >
       <MenuBar
-        themeHandler={() => {}}
+        themeHandler={handleTheme}
         menuHandler={navigateMenu}
         undoHandler={decrementCount}
       />
       <View style={styles.top}>
         <Text
           style={[
-            styles.colorPrimary,
+            themeStyle("primary"),
             styles.fontSize7,
             styles.fontBold,
             styles.marginT4,
@@ -63,7 +79,7 @@ export default function Question(props: Props) {
         <Text
           style={[
             styles.marginB2,
-            styles.colorSecondary,
+            themeStyle("primary", "secondary"),
             styles.fontSize3,
             styles.marginT1p5,
           ]}

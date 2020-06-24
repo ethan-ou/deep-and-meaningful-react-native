@@ -1,30 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import StepIndicator from "react-native-step-indicator";
-import {
-  colorNightBackground,
-  colorNightSecondary,
-  colorNightPrimary,
-} from "../constants/styles";
-
-const thirdIndicatorStyles = {
-  stepIndicatorSize: 35,
-  currentStepIndicatorSize: 40,
-  separatorStrokeWidth: 3,
-  currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: colorNightSecondary,
-  stepStrokeWidth: 3,
-  stepStrokeFinishedColor: colorNightSecondary,
-  stepStrokeUnFinishedColor: colorNightSecondary,
-  separatorFinishedColor: colorNightSecondary,
-  separatorUnFinishedColor: colorNightSecondary,
-  stepIndicatorFinishedColor: colorNightBackground,
-  stepIndicatorUnFinishedColor: colorNightBackground,
-  stepIndicatorCurrentColor: colorNightPrimary,
-  stepIndicatorLabelCurrentColor: "transparent",
-  stepIndicatorLabelFinishedColor: "transparent",
-  stepIndicatorLabelUnFinishedColor: "transparent",
-};
+import { color } from "../constants/themes";
+import { useAppContext } from "../store";
 
 interface Props {
   stepCount: number;
@@ -33,6 +11,29 @@ interface Props {
 }
 
 export default function StepSelector(props: Props) {
+  const [state, dispatch] = useAppContext();
+
+  const theme = color(state.theme);
+
+  const thirdIndicatorStyles = {
+    stepIndicatorSize: 35,
+    currentStepIndicatorSize: 40,
+    separatorStrokeWidth: 3.5,
+    currentStepStrokeWidth: 3.5,
+    stepStrokeCurrentColor: theme("primary", "secondary"),
+    stepStrokeWidth: 3.5,
+    stepStrokeFinishedColor: theme("primary", "secondary"),
+    stepStrokeUnFinishedColor: theme("primary", "secondary"),
+    separatorFinishedColor: theme("primary", "secondary"),
+    separatorUnFinishedColor: theme("primary", "secondary"),
+    stepIndicatorFinishedColor: theme("background"),
+    stepIndicatorUnFinishedColor: theme("background"),
+    stepIndicatorCurrentColor: theme("tertiary", "primary"),
+    stepIndicatorLabelCurrentColor: "transparent",
+    stepIndicatorLabelFinishedColor: "transparent",
+    stepIndicatorLabelUnFinishedColor: "transparent",
+  };
+
   return (
     <>
       <StepIndicator

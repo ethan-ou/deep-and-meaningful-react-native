@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import styles, { colorNightPrimary } from "../constants/styles";
-import { categories } from "../constants/categories";
+import styles from "../constants/styles";
+import categories from "../constants/categories";
 import StepSelector from "../components/StepSelector";
 import { useAppContext } from "../store";
 import { selectCategory, loadQuestions } from "../store/actions";
 import { StackParamList, Routes } from "../types";
 import Button from "../components/Button";
+import theme, { color } from "../constants/themes";
 
 import Dance from "../assets/icons/Dance";
 import Park from "../assets/icons/Park";
@@ -22,6 +23,9 @@ export default function Menu(props: Props) {
   const [state, dispatch] = useAppContext();
   const [currentPage, setCurrentPage] = useState(0);
 
+  const themeStyle = theme(state.theme);
+  const colorStyle = color(state.theme);
+
   const onStepPress = (position: number) => {
     setCurrentPage(position);
   };
@@ -35,16 +39,16 @@ export default function Menu(props: Props) {
   const CategoryImage = (state: number) => {
     switch (state) {
       case 0: {
-        return <Dance color={colorNightPrimary} />;
+        return <Dance color={colorStyle("primary")} />;
       }
       case 1: {
-        return <Park color={colorNightPrimary} />;
+        return <Park color={colorStyle("primary")} />;
       }
       case 2: {
-        return <Neptune color={colorNightPrimary} />;
+        return <Neptune color={colorStyle("primary")} />;
       }
       case 3: {
-        return <Snuggle color={colorNightPrimary} />;
+        return <Snuggle color={colorStyle("primary")} />;
       }
       default: {
         return null;
@@ -53,14 +57,21 @@ export default function Menu(props: Props) {
   };
 
   return (
-    <View style={[styles.container, styles.colorBackground]}>
+    <View
+      style={[
+        styles.container,
+        themeStyle("background") as {
+          backgroundColor: string;
+        },
+      ]}
+    >
       <Text
         style={[
           styles.marginT4,
           styles.marginB2,
           styles.fontSize6,
           styles.fontBold,
-          styles.colorSecondary,
+          themeStyle("primary", "secondary"),
           styles.textCenter,
         ]}
       >
@@ -72,7 +83,7 @@ export default function Menu(props: Props) {
       <Text
         style={[
           styles.fontSize4,
-          styles.colorSecondary,
+          themeStyle("primary", "secondary"),
           styles.textCenter,
           styles.fontBold,
         ]}
@@ -96,14 +107,14 @@ export default function Menu(props: Props) {
       <Text
         style={[
           styles.textCenter,
-          styles.colorSecondary,
+          themeStyle("primary", "secondary"),
           styles.fontSize1,
-          styles.marginH16,
+          styles.marginH12,
         ]}
       >
         {categories[currentPage].description}
       </Text>
-      <View style={styles.bottom}>
+      <View style={[styles.bottom, styles.paddingV2]}>
         <Button onPress={navigateQuestions} text="Begin!" />
       </View>
     </View>

@@ -16,9 +16,6 @@ export const vmax = (number: number) =>
     Dimensions.get("window").height * (number / 100)
   );
 
-export const colorNightPrimary = "#b5c1ff";
-export const colorNightSecondary = "#fff";
-export const colorNightBackground = "#333";
 const fontScale8 = 3.5 * 16;
 const fontScale7 = 3 * 16;
 const fontScale6 = 2.4 * 16;
@@ -29,15 +26,6 @@ const fontScale2 = 1.5 * 16;
 const fontScale1 = 1.4 * 16;
 
 const styles = StyleSheet.create({
-  colorPrimary: {
-    color: colorNightPrimary,
-  },
-  colorSecondary: {
-    color: colorNightSecondary,
-  },
-  colorBackground: {
-    backgroundColor: colorNightBackground,
-  },
   fontSize1: {
     fontSize: fontScale1,
   },
@@ -91,6 +79,9 @@ const styles = StyleSheet.create({
   },
   marginV2: {
     marginVertical: vh(2),
+  },
+  marginH12: {
+    marginHorizontal: vw(12),
   },
   marginH16: {
     marginHorizontal: vw(16),
@@ -182,14 +173,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   button: {
-    color: colorNightPrimary,
-    backgroundColor: "transparent",
     paddingVertical: 12.8,
     paddingHorizontal: 56,
     textAlignVertical: "center",
     borderRadius: 14,
     borderWidth: 5,
-    borderColor: colorNightPrimary,
   },
 });
 

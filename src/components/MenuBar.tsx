@@ -7,7 +7,9 @@ import {
   Image,
   GestureResponderEvent,
 } from "react-native";
-import styles, { colorNightPrimary } from "../constants/styles";
+import styles from "../constants/styles";
+import { color } from "../constants/themes";
+import { useAppContext } from "../store";
 
 import Moon from "../assets/icons/MoonSolid";
 import Chat from "../assets/icons/ChatBold";
@@ -20,25 +22,28 @@ interface Props {
 }
 
 export default function MenuBar(props: Props) {
+  const [state, dispatch] = useAppContext();
+  const theme = color(state.theme);
+
   return (
     <View style={[styles.navigation, styles.marginT1]}>
       <TouchableOpacity
         onPress={props.themeHandler}
         style={[styles.height5, styles.width6h]}
       >
-        <Moon color={colorNightPrimary} />
+        <Moon color={theme("secondary", "primary")} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={props.menuHandler}
-        style={[styles.height5, styles.width6h]}
+        style={[styles.height5, styles.width7h]}
       >
-        <Chat color={colorNightPrimary} />
+        <Chat color={theme("secondary", "primary")} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={props.undoHandler}
         style={[styles.height5, styles.width6h]}
       >
-        <Undo color={colorNightPrimary} />
+        <Undo color={theme("secondary", "primary")} />
       </TouchableOpacity>
     </View>
   );

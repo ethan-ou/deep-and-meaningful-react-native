@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  GestureResponderEvent,
-} from "react-native";
+import { TouchableOpacity, Text, GestureResponderEvent } from "react-native";
+import { useAppContext } from "../store";
+import theme from "../constants/themes";
 import styles from "../constants/styles";
 
 interface Props {
@@ -12,12 +9,16 @@ interface Props {
   text: string;
 }
 
-export default function (props: Props) {
+export default function Button(props: Props) {
+  const [state, dispatch] = useAppContext();
+  const themeStyle = theme(state.theme);
+
   return (
     <TouchableOpacity onPress={props.onPress}>
       <Text
         style={[
           styles.button,
+          themeStyle("button"),
           styles.fontSize4,
           styles.marginV2,
           styles.textCenter,
