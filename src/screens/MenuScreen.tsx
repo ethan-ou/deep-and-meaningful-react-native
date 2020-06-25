@@ -14,6 +14,7 @@ import Dance from "../assets/icons/Dance";
 import Park from "../assets/icons/Park";
 import Neptune from "../assets/icons/Neptune";
 import Snuggle from "../assets/icons/Snuggle";
+import AsyncStorage from "@react-native-community/async-storage";
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, Routes>;
@@ -21,16 +22,23 @@ interface Props {
 
 export default function Menu(props: Props) {
   const [state, dispatch] = useAppContext();
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(state.category);
 
   const themeStyle = theme(state.theme);
   const colorStyle = color(state.theme);
+
+  const storeCategory = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("category", value);
+    } catch (e) {}
+  };
 
   const onStepPress = (position: number) => {
     setCurrentPage(position);
   };
 
   const navigateQuestions = () => {
+    storeCategory(JSON.stringify(currentPage));
     dispatch(selectCategory(currentPage));
     dispatch(loadQuestions());
     props.navigation.navigate("Question");

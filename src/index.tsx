@@ -9,7 +9,7 @@ import Home from "./screens/HomeScreen";
 import Menu from "./screens/MenuScreen";
 import Question from "./screens/QuestionScreen";
 import { StackParamList } from "./types";
-import { switchTheme } from "./store/actions";
+import { switchTheme, selectCategory } from "./store/actions";
 import AsyncStorage from "@react-native-community/async-storage";
 import { SafeAreaView, StatusBar } from "react-native";
 import { color } from "./constants/themes";
@@ -34,12 +34,27 @@ export default function Index() {
     } catch (e) {}
   };
 
+  const getCategory = async () => {
+    try {
+      const value = await AsyncStorage.getItem("category");
+      if (value !== null) {
+        return value;
+      }
+    } catch (e) {}
+  };
+
   useEffect(() => {
     _isMounted.current = true;
 
     getTheme().then((value) => {
       if (value && _isMounted.current) {
         dispatch(switchTheme(JSON.parse(value)));
+      }
+    });
+
+    getCategory().then((value) => {
+      if (value && _isMounted.current) {
+        dispatch(selectCategory(JSON.parse(value)));
       }
     });
 

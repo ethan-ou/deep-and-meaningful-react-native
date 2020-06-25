@@ -56,7 +56,7 @@ export default function Question(props: Props) {
 
   const shareQuestion = async () => {
     try {
-      const result = await Share.share({
+      await Share.share({
         message: state.questions[count].question,
       });
     } catch (error) {
