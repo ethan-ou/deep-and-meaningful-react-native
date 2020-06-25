@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -10,19 +10,38 @@ import Menu from "./screens/MenuScreen";
 import Question from "./screens/QuestionScreen";
 import { StackParamList } from "./types";
 import { switchTheme } from "./store/actions";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default function Index() {
   const [state, dispatch] = useAppContext();
+  const _isMounted = useRef(false);
 
   const getTheme = async () => {
-    const theme = Appearance.getColorScheme();
-    if (theme !== null && (theme === "light" || theme === "dark")) {
-      dispatch(switchTheme(theme));
-    }
+    try {
+      const value = await AsyncStorage.getItem("theme");
+      if (value !== null) {
+        return value;
+      }
+
+      const theme = Appearance.getColorScheme();
+      if (theme !== null && (theme === "light" || theme === "dark")) {
+        return theme;
+      }
+    } catch (e) {}
   };
 
   useEffect(() => {
-    getTheme();
+    _isMounted.current = true;
+
+    getTheme().then((value) => {
+      if (value && _isMounted.current) {
+        dispatch(switchTheme(JSON.parse(value)));
+      }
+    });
+
+    return () => {
+      _isMounted.current = false;
+    };
   }, []);
 
   const Stack = createStackNavigator<StackParamList>();

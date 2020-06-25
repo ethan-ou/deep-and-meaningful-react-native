@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import { capitalise } from "../utils";
 import styles from "../constants/styles";
@@ -44,8 +45,16 @@ export default function Question(props: Props) {
     }
   };
 
+  const storeTheme = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("theme", value);
+    } catch (e) {}
+  };
+
   const handleTheme = () => {
-    dispatch(switchTheme());
+    const newTheme = state.theme === "light" ? "dark" : "light";
+    storeTheme(JSON.stringify(newTheme));
+    dispatch(switchTheme(newTheme));
   };
 
   const navigateMenu = () => props.navigation.navigate("Menu");
