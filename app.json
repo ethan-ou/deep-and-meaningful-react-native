@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "deep-and-meaningful",
-    "slug": "2441f61f-f105-420d-aee8-16a2721e9e5c",
+    "name": "Deep and Meaningful",
+    "slug": "deep-and-meaningful",
     "privacy": "public",
     "sdkVersion": "37.0.0",
     "platforms": ["ios", "android", "web"],
