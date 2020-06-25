@@ -11,9 +11,13 @@ import Question from "./screens/QuestionScreen";
 import { StackParamList } from "./types";
 import { switchTheme } from "./store/actions";
 import AsyncStorage from "@react-native-community/async-storage";
+import { SafeAreaView, StatusBar } from "react-native";
+import { color } from "./constants/themes";
 
 export default function Index() {
   const [state, dispatch] = useAppContext();
+  const colorStyle = color(state.theme);
+
   const _isMounted = useRef(false);
 
   const getTheme = async () => {
@@ -46,30 +50,36 @@ export default function Index() {
 
   const Stack = createStackNavigator<StackParamList>();
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" headerMode={"none"}>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            animationEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="Menu"
-          component={Menu}
-          options={{
-            animationEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="Question"
-          component={Question}
-          options={{
-            animationEnabled: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar
+        backgroundColor={colorStyle("background")}
+        barStyle={state.theme === "light" ? "dark-content" : "light-content"}
+      />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home" headerMode={"none"}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="Menu"
+            component={Menu}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="Question"
+            component={Question}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }

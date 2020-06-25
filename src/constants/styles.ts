@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
   marginV2: {
     marginVertical: vh(2),
   },
+  marginH1: {
+    marginHorizontal: vw(1),
+  },
   marginH12: {
     marginHorizontal: vw(12),
   },
@@ -151,7 +154,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
   },
   navigation: {
     flexDirection: "row",
@@ -177,7 +179,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 56,
     textAlignVertical: "center",
     borderRadius: 14,
-    borderWidth: 5,
   },
 });
 

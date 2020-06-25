@@ -26,7 +26,7 @@ export default function MenuBar(props: Props) {
   const theme = color(state.theme);
 
   return (
-    <View style={[styles.navigation, styles.marginT1]}>
+    <View style={[styles.navigation, styles.marginT1p5, styles.marginH1]}>
       <TouchableOpacity
         onPress={props.themeHandler}
         style={[styles.height5, styles.width6h]}
