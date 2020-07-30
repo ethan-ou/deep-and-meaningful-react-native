@@ -8,11 +8,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon-dark.png",
-    "backgroundColor": "#333",
+    "backgroundColor": "#333333",
     "splash": {
       "image": "./src/assets/splash-dark.png",
       "resizeMode": "cover",
-      "backgroundColor": "#333"
+      "backgroundColor": "#333333"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
