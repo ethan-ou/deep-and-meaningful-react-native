@@ -3,8 +3,11 @@
     "name": "Deep and Meaningful",
     "slug": "deep-and-meaningful",
     "privacy": "public",
-    "sdkVersion": "37.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon-dark.png",
@@ -17,7 +20,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["src/assets/**/*"],
+    "assetBundlePatterns": [
+      "src/assets/**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.ethanou.deepandmeaningful",
       "buildNumber": "1.0.0",
@@ -29,7 +34,13 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg",
+        "ts",
+        "tsx"
+      ]
     },
     "userInterfaceStyle": "automatic"
   }
